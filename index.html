@@ -82,7 +82,7 @@
 
   /* ── Main ── */
   .main { flex: 1; display: flex; flex-direction: column; min-width: 0; overflow: hidden; }
-  .topbar { background: var(--surface); border-bottom: 0.5px solid var(--border); height: 54px; padding: 0 22px; display: flex; align-items: center; justify-content: space-between; flex-shrink: 0; box-shadow: var(--shadow); z-index: 900; position: relative; }
+  .topbar { background: var(--surface); border-bottom: 0.5px solid var(--border); height: 54px; padding: 0 22px; display: flex; align-items: center; justify-content: space-between; flex-shrink: 0; box-shadow: var(--shadow); position: relative; z-index: 10; }
   .topbar-left { display: flex; flex-direction: column; }
   .topbar-title { font-size: 15px; font-weight: 600; letter-spacing: -0.01em; }
   .topbar-sub { font-size: 11px; color: var(--text3); }
@@ -94,17 +94,55 @@
   .icon-btn:hover { background: var(--border); }
 
   /* ── Content ── */
-  .content { flex: 1; overflow-y: auto; padding: 18px 22px; }
+  .content { flex: 1; overflow-y: auto; padding: 18px 22px; position: relative; }
   .page { display: none; }
-  .page.active { display: block; }
+  .page.active { display: block; animation: fadeIn 0.3s ease; }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
 
-  /* ── Cards ── */
+  /* ── Cards & Global UI ── */
   .card { background: var(--surface); border: 0.5px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow); }
-  .card-header { padding: 12px 16px; border-bottom: 0.5px solid var(--border); display: flex; align-items: center; justify-content: space-between; }
+  .card-header { padding: 12px 16px; border-bottom: 0.5px solid var(--border); display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px; }
   .card-title { font-size: 13px; font-weight: 600; }
   .card-meta { font-size: 11px; color: var(--text3); margin-top: 2px; }
+  .card-body { padding: 16px; }
 
-  /* ── Stat Cards ── */
+  .badge { display: inline-flex; align-items: center; padding: 2px 8px; border-radius: 20px; font-size: 10.5px; font-weight: 500; }
+  .badge-green { background: var(--green-bg); color: var(--green); }
+  .badge-amber { background: var(--amber-bg); color: var(--amber); }
+  .badge-red { background: var(--red-bg); color: var(--red); }
+  .badge-blue { background: var(--accent-light); color: var(--accent); }
+  .badge-gray { background: var(--surface2); color: var(--text2); }
+  .stat-change { font-size: 11px; }
+  .stat-change.neg { color: var(--red); }
+  .stat-change.warn { color: var(--amber); }
+
+  .breadcrumb { font-size: 11.5px; color: var(--text3); margin-bottom: 14px; }
+  .breadcrumb a { color: var(--accent); cursor: pointer; text-decoration: none; }
+  .breadcrumb a:hover { text-decoration: underline; }
+  .breadcrumb span { margin: 0 5px; }
+
+  .btn { padding: 6px 14px; border-radius: 6px; font-size: 12px; font-family: inherit; cursor: pointer; border: 0.5px solid var(--border); background: var(--surface2); color: var(--text2); transition: background 0.12s; }
+  .btn:hover { background: var(--border); }
+  .btn.primary { background: var(--accent); color: #fff; border-color: var(--accent); }
+  .btn.primary:hover { opacity: 0.9; }
+
+  /* ── Forms ── */
+  .form-group { margin-bottom: 14px; }
+  .form-label { display: block; font-size: 11.5px; color: var(--text2); margin-bottom: 6px; font-weight: 500; }
+  .form-control { width: 100%; padding: 8px 12px; border: 0.5px solid var(--border); border-radius: 6px; background: var(--surface); color: var(--text); font-size: 12.5px; font-family: inherit; transition: border 0.2s; }
+  .form-control:focus { outline: none; border-color: var(--accent); }
+  textarea.form-control { resize: vertical; min-height: 80px; }
+  .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+
+  /* ── Tables ── */
+  .table-wrap { width: 100%; overflow-x: auto; }
+  .data-table { width: 100%; border-collapse: collapse; text-align: left; font-size: 12px; }
+  .data-table th { padding: 10px 14px; border-bottom: 1px solid var(--border); color: var(--text3); font-weight: 500; font-size: 11px; text-transform: uppercase; letter-spacing: 0.05em; background: var(--surface2); white-space: nowrap;}
+  .data-table td { padding: 10px 14px; border-bottom: 0.5px solid var(--border); color: var(--text2); white-space: nowrap; }
+  .data-table tbody tr:last-child td { border-bottom: none; }
+  .data-table tbody tr:hover { background: var(--surface2); }
+
+  /* ── Dashboard Specific ── */
   .stat-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 18px; }
   .stat-card { background: var(--surface); border: 0.5px solid var(--border); border-radius: var(--radius); padding: 14px 16px; box-shadow: var(--shadow); }
   .stat-icon { width: 32px; height: 32px; border-radius: 8px; display: flex; align-items: center; justify-content: center; margin-bottom: 10px; }
@@ -112,63 +150,26 @@
   .stat-num { font-size: 24px; font-weight: 600; letter-spacing: -0.02em; color: var(--text); line-height: 1; }
   .stat-num small { font-size: 14px; color: var(--text3); font-weight: 400; }
   .stat-footer { margin-top: 6px; }
-  .badge { display: inline-flex; align-items: center; padding: 2px 8px; border-radius: 20px; font-size: 10.5px; font-weight: 500; }
-  .badge-green { background: var(--green-bg); color: var(--green); }
-  .badge-amber { background: var(--amber-bg); color: var(--amber); }
-  .badge-red { background: var(--red-bg); color: var(--red); }
-  .badge-blue { background: var(--accent-light); color: var(--accent); }
-  .stat-change { font-size: 11px; }
-  .stat-change.neg { color: var(--red); }
-  .stat-change.warn { color: var(--amber); }
 
-  /* ── Two col layout ── */
   .two-col { display: grid; grid-template-columns: 1fr 295px; gap: 14px; }
-
-  /* ── Map ── */
-  .map-wrap { height: 280px; border-radius: 0 0 var(--radius) var(--radius); background: var(--surface2); position: relative; z-index: 1; overflow: hidden; }
+  .map-wrap { height: 280px; border-radius: 0 0 var(--radius) var(--radius); background: var(--surface2); position: relative; overflow: hidden; z-index: 1;}
   .map-legend { display: flex; gap: 14px; padding: 8px 16px; border-top: 0.5px solid var(--border); font-size: 11px; color: var(--text3); }
   .legend-dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; margin-right: 5px; }
 
-  /* Dark mode map adjustments */
-  .dark .leaflet-layer,
-  .dark .leaflet-control-zoom-in,
-  .dark .leaflet-control-zoom-out,
-  .dark .leaflet-control-attribution {
-    filter: invert(100%) hue-rotate(180deg) brightness(95%) contrast(90%);
-  }
-
-  /* ── Sensor list (sidebar card) ── */
   .sensor-list-item { display: flex; align-items: center; gap: 10px; padding: 9px 14px; border-bottom: 0.5px solid var(--border); cursor: pointer; transition: background 0.1s; }
   .sensor-list-item:last-child { border-bottom: none; }
   .sensor-list-item:hover { background: var(--surface2); }
   .status-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
   .s-name { flex: 1; font-size: 12.5px; font-weight: 500; }
   .s-loc { font-size: 11px; color: var(--text3); }
-  .s-badge { font-size: 11px; font-weight: 500; }
 
-  /* ── Alert list ── */
   .alert-item { display: flex; gap: 10px; padding: 10px 14px; border-bottom: 0.5px solid var(--border); }
   .alert-item:last-child { border-bottom: none; }
   .alert-dot { width: 7px; height: 7px; border-radius: 50%; margin-top: 5px; flex-shrink: 0; }
   .alert-msg { font-size: 12px; color: var(--text); line-height: 1.45; }
   .alert-time { font-size: 10.5px; color: var(--text3); margin-top: 2px; }
 
-  /* ── Detail page ── */
-  .breadcrumb { font-size: 11.5px; color: var(--text3); margin-bottom: 14px; }
-  .breadcrumb a { color: var(--accent); cursor: pointer; text-decoration: none; }
-  .breadcrumb a:hover { text-decoration: underline; }
-  .breadcrumb span { margin: 0 5px; }
-  .tab-row { display: flex; gap: 4px; margin-bottom: 14px; background: var(--surface2); border-radius: 8px; padding: 3px; width: fit-content; }
-  .tab { padding: 5px 13px; border-radius: 6px; font-size: 12.5px; cursor: pointer; color: var(--text3); transition: background 0.12s; }
-  .tab.active { background: var(--surface); color: var(--text); font-weight: 500; box-shadow: var(--shadow); }
-  .date-row { display: flex; align-items: center; gap: 8px; margin-bottom: 14px; flex-wrap: wrap; }
-  .date-row label { font-size: 12px; color: var(--text3); }
-  input[type="date"] { padding: 5px 10px; border: 0.5px solid var(--border); border-radius: 6px; background: var(--surface); color: var(--text); font-size: 12px; font-family: inherit; }
-  .btn { padding: 6px 14px; border-radius: 6px; font-size: 12px; font-family: inherit; cursor: pointer; border: 0.5px solid var(--border); background: var(--surface2); color: var(--text2); transition: background 0.12s; }
-  .btn:hover { background: var(--border); }
-  .btn.primary { background: var(--accent); color: #fff; border-color: var(--accent); }
-  .btn.primary:hover { opacity: 0.9; }
-
+  /* ── Detail Sensor Specific ── */
   .pos-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 16px; }
   .pos-card { background: var(--surface); border: 0.5px solid var(--border); border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow); }
   .pos-card.offline { border-color: var(--amber); opacity: 0.8; }
@@ -176,33 +177,28 @@
   .pos-header.offline-bg { background: var(--amber-bg); }
   .pos-title { font-size: 13px; font-weight: 600; }
   .pos-time { font-size: 10px; color: var(--text3); margin-top: 2px; font-family: 'DM Mono', monospace; }
-  .online-badge { display: flex; align-items: center; gap: 4px; font-size: 11px; font-weight: 500; color: var(--green); }
-  .offline-badge { display: flex; align-items: center; gap: 4px; font-size: 11px; font-weight: 500; color: var(--amber); }
   .param-row { display: flex; align-items: center; padding: 6px 14px; border-bottom: 0.5px solid var(--border); }
   .param-row:last-child { border-bottom: none; }
   .p-dot { width: 6px; height: 6px; border-radius: 50%; margin-right: 9px; flex-shrink: 0; }
   .p-name { flex: 1; font-size: 12px; color: var(--text2); }
   .p-val { font-size: 12px; font-weight: 500; font-family: 'DM Mono', monospace; }
-  .p-trend { font-size: 11px; min-width: 44px; text-align: right; margin-left: 8px; }
-  .up { color: var(--green); } .dn { color: var(--red); } .flat { color: var(--text3); }
 
-  .chart-card { background: var(--surface); border: 0.5px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow); margin-bottom: 16px; }
-  .chart-header { padding: 12px 16px; border-bottom: 0.5px solid var(--border); display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px; }
+  .tab-row { display: flex; gap: 4px; margin-bottom: 14px; background: var(--surface2); border-radius: 8px; padding: 3px; width: fit-content; }
+  .tab { padding: 5px 13px; border-radius: 6px; font-size: 12.5px; cursor: pointer; color: var(--text3); transition: background 0.12s; }
+  .tab.active { background: var(--surface); color: var(--text); font-weight: 500; box-shadow: var(--shadow); }
+
   .period-btns { display: flex; gap: 4px; }
   .period-btn { padding: 4px 9px; border-radius: 5px; font-size: 11px; border: 0.5px solid var(--border); background: var(--surface2); color: var(--text3); cursor: pointer; }
   .period-btn.active { background: var(--accent-light); color: var(--accent); border-color: var(--accent); }
-  .chart-body { padding: 16px; }
-  .chart-selector { display: flex; gap: 8px; margin-bottom: 10px; flex-wrap: wrap; }
-  .sensor-chip { padding: 3px 10px; border-radius: 20px; font-size: 11px; border: 0.5px solid var(--border); background: var(--surface2); color: var(--text3); cursor: pointer; }
-  .sensor-chip.active { background: var(--accent); color: #fff; border-color: var(--accent); }
 
-  /* ── Cross-section view ── */
-  .viz-card { background: var(--surface); border: 0.5px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow); overflow: hidden; }
+  .viz-card { background: var(--surface); border: 0.5px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow); overflow: hidden; margin-top: 16px; }
   .viz-tabs { display: flex; gap: 6px; padding: 10px 14px; border-bottom: 0.5px solid var(--border); }
   .viz-tab { padding: 5px 12px; border-radius: 6px; font-size: 11.5px; cursor: pointer; border: 0.5px solid var(--border); background: var(--surface2); color: var(--text3); }
   .viz-tab.active { background: var(--accent); color: #fff; border-color: var(--accent); }
 
-  /* ── Scrollbar ── */
+  /* Dark mode map adjustments */
+  .dark .leaflet-layer, .dark .leaflet-control-zoom-in, .dark .leaflet-control-zoom-out, .dark .leaflet-control-attribution { filter: invert(100%) hue-rotate(180deg) brightness(95%) contrast(90%); }
+
   ::-webkit-scrollbar { width: 4px; height: 4px; }
   ::-webkit-scrollbar-track { background: transparent; }
   ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
@@ -235,25 +231,27 @@
         <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="8" cy="8" r="2.5"/><path d="M8 2v1.5M8 12.5V14M2 8h1.5M12.5 8H14" stroke-linecap="round"/></svg>
         Data Sensor
       </div>
-      <div class="nav-item">
+      <div class="nav-item" id="nav-trend" onclick="showPage('trend')">
         <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 12L5.5 7l3 3.5 2.5-5L14 12H2z" stroke-linejoin="round"/></svg>
         Grafik & Tren
       </div>
+      
       <div class="nav-section-label">Manajemen</div>
-      <div class="nav-item">
+      <div class="nav-item" id="nav-manual" onclick="showPage('manual')">
         <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="2" width="10" height="12" rx="1.5"/><line x1="6" y1="6" x2="10" y2="6" stroke-linecap="round"/><line x1="6" y1="9" x2="10" y2="9" stroke-linecap="round"/><line x1="6" y1="12" x2="9" y2="12" stroke-linecap="round"/></svg>
         Data Manual
       </div>
-      <div class="nav-item">
+      <div class="nav-item" id="nav-history" onclick="showPage('history')">
         <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 1a7 7 0 100 14A7 7 0 008 1z"/><path d="M8 4.5V8l2.5 1.5" stroke-linecap="round"/></svg>
         Riwayat Data
       </div>
+      
       <div class="nav-section-label">Konfigurasi</div>
-      <div class="nav-item">
+      <div class="nav-item" id="nav-calibration" onclick="showPage('calibration')">
         <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="8" cy="8" r="2.5"/><path d="M8 1.5V3M8 13v1.5M1.5 8H3M13 8h1.5M3.2 3.2l1 1M11.8 11.8l1 1M3.2 12.8l1-1M11.8 4.2l1-1" stroke-linecap="round"/></svg>
         Kalibrasi Sensor
       </div>
-      <div class="nav-item">
+      <div class="nav-item" id="nav-user" onclick="showPage('user')">
         <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="7" cy="6" r="3"/><path d="M1 14c0-3 2.7-5 6-5s6 2 6 5" stroke-linecap="round"/></svg>
         Manajemen User
       </div>
@@ -271,8 +269,8 @@
   <div class="main">
     <header class="topbar">
       <div class="topbar-left" id="topbar-info">
-        <div class="topbar-title">Dashboard</div>
-        <div class="topbar-sub">Overview monitoring real-time bendungan</div>
+        <div class="topbar-title">Dashboard Monitoring</div>
+        <div class="topbar-sub">Overview status real-time bendungan secara nasional</div>
       </div>
       <div class="topbar-right">
         <div class="live-badge" id="live-badge"><span class="live-dot"></span>Live · <span id="clock">--:--</span></div>
@@ -283,38 +281,25 @@
     <div class="content">
 
       <div class="page active" id="page-dashboard">
-
         <div class="stat-grid">
           <div class="stat-card">
-            <div class="stat-icon" style="background:var(--accent-light)">
-              <svg width="16" height="16" viewBox="0 0 16 16" fill="var(--accent)"><path d="M8 1L2 6v9h4v-5h4v5h4V6L8 1z"/></svg>
-            </div>
-            <div class="stat-label">Total Bendungan</div>
-            <div class="stat-num">5</div>
+            <div class="stat-icon" style="background:var(--accent-light)"><svg width="16" height="16" viewBox="0 0 16 16" fill="var(--accent)"><path d="M8 1L2 6v9h4v-5h4v5h4V6L8 1z"/></svg></div>
+            <div class="stat-label">Total Bendungan</div><div class="stat-num">5</div>
             <div class="stat-footer"><span class="badge badge-green">5 Aktif</span></div>
           </div>
           <div class="stat-card">
-            <div class="stat-icon" style="background:var(--amber-bg)">
-              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="var(--amber)" stroke-width="1.5"><circle cx="8" cy="8" r="3"/><path d="M8 1v2M8 13v2M1 8h2M13 8h2" stroke-linecap="round"/></svg>
-            </div>
-            <div class="stat-label">Logger Online</div>
-            <div class="stat-num">9 <small>/ 13</small></div>
+            <div class="stat-icon" style="background:var(--amber-bg)"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="var(--amber)" stroke-width="1.5"><circle cx="8" cy="8" r="3"/><path d="M8 1v2M8 13v2M1 8h2M13 8h2" stroke-linecap="round"/></svg></div>
+            <div class="stat-label">Logger Online</div><div class="stat-num">9 <small>/ 13</small></div>
             <div class="stat-footer"><span class="badge badge-amber">4 Offline</span></div>
           </div>
           <div class="stat-card">
-            <div class="stat-icon" style="background:var(--green-bg)">
-              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="var(--green)" stroke-width="1.5"><path d="M2 11L5.5 6.5 8.5 9.5 11 5 14 11H2z" stroke-linejoin="round"/></svg>
-            </div>
-            <div class="stat-label">Data Hari Ini</div>
-            <div class="stat-num" style="font-size:19px">81.239</div>
+            <div class="stat-icon" style="background:var(--green-bg)"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="var(--green)" stroke-width="1.5"><path d="M2 11L5.5 6.5 8.5 9.5 11 5 14 11H2z" stroke-linejoin="round"/></svg></div>
+            <div class="stat-label">Data Hari Ini</div><div class="stat-num" style="font-size:19px">81.239</div>
             <div class="stat-footer"><span class="stat-change neg">↓ 38% dari kemarin</span></div>
           </div>
           <div class="stat-card">
-            <div class="stat-icon" style="background:var(--red-bg)">
-              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="var(--red)" stroke-width="1.5"><path d="M8 3v5M8 11v1.5" stroke-linecap="round"/><path d="M7 1.5L1 12.5h14L9 1.5a1.15 1.15 0 00-2 0z" stroke-linejoin="round"/></svg>
-            </div>
-            <div class="stat-label">Alert Aktif</div>
-            <div class="stat-num" style="color:var(--amber)">34</div>
+            <div class="stat-icon" style="background:var(--red-bg)"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="var(--red)" stroke-width="1.5"><path d="M8 3v5M8 11v1.5" stroke-linecap="round"/><path d="M7 1.5L1 12.5h14L9 1.5a1.15 1.15 0 00-2 0z" stroke-linejoin="round"/></svg></div>
+            <div class="stat-label">Alert Aktif</div><div class="stat-num" style="color:var(--amber)">34</div>
             <div class="stat-footer"><span class="badge badge-amber">34 Warning</span></div>
           </div>
         </div>
@@ -323,10 +308,7 @@
           <div>
             <div class="card">
               <div class="card-header">
-                <div>
-                  <div class="card-title">Peta Lokasi Bendungan</div>
-                  <div class="card-meta">Klik marker untuk melihat detail sensor</div>
-                </div>
+                <div><div class="card-title">Peta Lokasi Bendungan</div><div class="card-meta">Klik marker untuk melihat detail sensor</div></div>
               </div>
               <div class="map-wrap">
                 <div id="damMap" style="width: 100%; height: 100%;"></div>
@@ -400,9 +382,7 @@
 
       <div class="page" id="page-sensor">
         <div class="breadcrumb">
-          <a onclick="showPage('dashboard')">Dashboard</a>
-          <span>›</span>
-          <strong>Bendungan Bringin Sila</strong>
+          <a onclick="showPage('dashboard')">Dashboard</a> <span>›</span> <strong>Bendungan Bringin Sila</strong>
         </div>
 
         <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;flex-wrap:wrap;gap:8px;">
@@ -410,7 +390,6 @@
             <div class="tab active">Semua POS</div>
             <div class="tab">AWLR</div>
             <div class="tab">V-Notch</div>
-            <div class="tab">Flowmeter</div>
             <div class="tab">Cuaca</div>
           </div>
           <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;">
@@ -423,120 +402,77 @@
           </div>
         </div>
 
-        <div style="font-size:11px;color:var(--text3);margin-bottom:12px;">Last update: 27 Apr 2026, 11.35 · 4 POS aktif · <span style="color:var(--green)">● Bringin Sila online</span></div>
+        <div style="font-size:11px;color:var(--text3);margin-bottom:12px;">Last update: Real-time · 4 POS aktif</div>
 
         <div class="pos-grid">
           <div class="pos-card">
             <div class="pos-header">
-              <div><div class="pos-title">Pos AWLR</div><div class="pos-time">27/04, 12.01</div></div>
-              <div class="online-badge"><span style="width:7px;height:7px;border-radius:50%;background:var(--green);display:inline-block"></span>Online</div>
+              <div><div class="pos-title">Pos AWLR</div><div class="pos-time">Real-time</div></div>
+              <div style="display:flex; align-items:center; gap:4px; font-size:11px; font-weight:500; color:var(--green);"><span style="width:7px;height:7px;border-radius:50%;background:var(--green);display:inline-block"></span>Online</div>
             </div>
-            <div class="param-row"><div class="p-dot" style="background:var(--green)"></div><span class="p-name">Battery_Logger</span><span class="p-val">14,44 V</span><span class="p-trend flat">—</span></div>
-            <div class="param-row"><div class="p-dot" style="background:var(--green)"></div><span class="p-name">Humidity_Logger</span><span class="p-val">41,7 %</span><span class="p-trend flat">—</span></div>
-            <div class="param-row"><div class="p-dot" style="background:var(--green)"></div><span class="p-name">Temp_Logger</span><span class="p-val">41 °C</span><span class="p-trend flat">—</span></div>
-            <div class="param-row"><div class="p-dot" style="background:var(--green)"></div><span class="p-name">Tinggi_Muka_Air</span><span class="p-val">116,08 mdpl</span><span class="p-trend flat">—</span></div>
+            <div class="param-row"><div class="p-dot" style="background:var(--green)"></div><span class="p-name">Battery_Logger</span><span class="p-val">14,44 V</span></div>
+            <div class="param-row"><div class="p-dot" style="background:var(--green)"></div><span class="p-name">Humidity_Logger</span><span class="p-val">41,7 %</span></div>
+            <div class="param-row"><div class="p-dot" style="background:var(--green)"></div><span class="p-name">Temp_Logger</span><span class="p-val">41 °C</span></div>
+            <div class="param-row"><div class="p-dot" style="background:var(--green)"></div><span class="p-name">Tinggi_Muka_Air</span><span class="p-val">116,08 mdpl</span></div>
           </div>
           <div class="pos-card">
             <div class="pos-header">
-              <div><div class="pos-title">Pos V-Notch</div><div class="pos-time">27/04, 11.59</div></div>
-              <div class="online-badge"><span style="width:7px;height:7px;border-radius:50%;background:var(--green);display:inline-block"></span>Online</div>
+              <div><div class="pos-title">Pos V-Notch</div><div class="pos-time">Real-time</div></div>
+              <div style="display:flex; align-items:center; gap:4px; font-size:11px; font-weight:500; color:var(--green);"><span style="width:7px;height:7px;border-radius:50%;background:var(--green);display:inline-block"></span>Online</div>
             </div>
-            <div class="param-row"><div class="p-dot" style="background:var(--green)"></div><span class="p-name">Battery_Logger</span><span class="p-val">12,91 V</span><span class="p-trend flat">—</span></div>
-            <div class="param-row"><div class="p-dot" style="background:var(--green)"></div><span class="p-name">Debit</span><span class="p-val">21,44 l/dtk</span><span class="p-trend flat">—</span></div>
-            <div class="param-row"><div class="p-dot" style="background:var(--green)"></div><span class="p-name">Humidity_Logger</span><span class="p-val">44,8 %</span><span class="p-trend flat">—</span></div>
-            <div class="param-row"><div class="p-dot" style="background:var(--green)"></div><span class="p-name">Tinggi_Muka_Air</span><span class="p-val">21,44 cm</span><span class="p-trend flat">—</span></div>
-            <div class="param-row"><div class="p-dot" style="background:var(--green)"></div><span class="p-name">Temp_Logger</span><span class="p-val">39,4 °C</span><span class="p-trend flat">—</span></div>
+            <div class="param-row"><div class="p-dot" style="background:var(--green)"></div><span class="p-name">Battery_Logger</span><span class="p-val">12,91 V</span></div>
+            <div class="param-row"><div class="p-dot" style="background:var(--green)"></div><span class="p-name">Debit Rembesan</span><span class="p-val">21,44 l/dtk</span></div>
+            <div class="param-row"><div class="p-dot" style="background:var(--green)"></div><span class="p-name">Tinggi_Muka_Air</span><span class="p-val">21,44 cm</span></div>
+            <div class="param-row"><div class="p-dot" style="background:var(--green)"></div><span class="p-name">Temp_Logger</span><span class="p-val">39,4 °C</span></div>
           </div>
           <div class="pos-card offline">
             <div class="pos-header offline-bg">
-              <div><div class="pos-title">Pos Weather Station</div><div class="pos-time">27/04, 11.06</div></div>
-              <div class="offline-badge"><span style="width:7px;height:7px;border-radius:50%;background:var(--amber);display:inline-block"></span>Offline</div>
+              <div><div class="pos-title">Pos Weather Station</div><div class="pos-time">Offline sejak 2 jam lalu</div></div>
+              <div style="display:flex; align-items:center; gap:4px; font-size:11px; font-weight:500; color:var(--amber);"><span style="width:7px;height:7px;border-radius:50%;background:var(--amber);display:inline-block"></span>Offline</div>
             </div>
-            <div class="param-row"><div class="p-dot" style="background:var(--text3)"></div><span class="p-name" style="color:var(--text3)">Air_Pressure</span><span class="p-val" style="color:var(--text3)">997,1 hPa</span><span class="p-trend flat">—</span></div>
-            <div class="param-row"><div class="p-dot" style="background:var(--text3)"></div><span class="p-name" style="color:var(--text3)">Air_Temperature</span><span class="p-val" style="color:var(--text3)">25,1 °C</span><span class="p-trend flat">—</span></div>
-            <div class="param-row"><div class="p-dot" style="background:var(--text3)"></div><span class="p-name" style="color:var(--text3)">Solar_Radiation</span><span class="p-val" style="color:var(--text3)">200,7 lv</span><span class="p-trend flat">—</span></div>
-            <div class="param-row"><div class="p-dot" style="background:var(--text3)"></div><span class="p-name" style="color:var(--text3)">Wind_Speed</span><span class="p-val" style="color:var(--text3)">2 m/s</span><span class="p-trend flat">—</span></div>
-            <div class="param-row"><div class="p-dot" style="background:var(--text3)"></div><span class="p-name" style="color:var(--text3)">Relative_Humidity</span><span class="p-val" style="color:var(--text3)">87 %Rh</span><span class="p-trend flat">—</span></div>
+            <div class="param-row"><div class="p-dot" style="background:var(--text3)"></div><span class="p-name" style="color:var(--text3)">Air_Pressure</span><span class="p-val" style="color:var(--text3)">997,1 hPa</span></div>
+            <div class="param-row"><div class="p-dot" style="background:var(--text3)"></div><span class="p-name" style="color:var(--text3)">Air_Temperature</span><span class="p-val" style="color:var(--text3)">25,1 °C</span></div>
+            <div class="param-row"><div class="p-dot" style="background:var(--text3)"></div><span class="p-name" style="color:var(--text3)">Solar_Radiation</span><span class="p-val" style="color:var(--text3)">200,7 lv</span></div>
+            <div class="param-row"><div class="p-dot" style="background:var(--text3)"></div><span class="p-name" style="color:var(--text3)">Wind_Speed</span><span class="p-val" style="color:var(--text3)">2 m/s</span></div>
           </div>
         </div>
 
-        <div class="chart-card">
-          <div class="chart-header">
+        <div class="card">
+          <div class="card-header">
             <div>
               <div class="card-title">Grafik Monitoring Real-time</div>
-              <div class="card-meta">Bendungan Bringin Sila · Pos AWLR · Tinggi_Muka_Air</div>
-            </div>
-            <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;">
-              <div class="period-btns">
-                <div class="period-btn">1J</div>
-                <div class="period-btn active">24J</div>
-                <div class="period-btn">7H</div>
-                <div class="period-btn">30H</div>
-              </div>
-              <button class="btn" style="font-size:11px">↺ Auto 15 dtk</button>
+              <div class="card-meta">Bendungan Bringin Sila · Pos AWLR</div>
             </div>
           </div>
-          <div class="chart-body">
-            <div class="chart-selector">
-              <div class="sensor-chip active">Tinggi_Muka_Air</div>
-              <div class="sensor-chip">Battery_Logger</div>
-              <div class="sensor-chip">Humidity_Logger</div>
-              <div class="sensor-chip">Temp_Logger</div>
-            </div>
-            <svg viewBox="0 0 580 140" xmlns="http://www.w3.org/2000/svg" style="width:100%;display:block">
-              <defs>
-                <linearGradient id="g1" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="0%" stop-color="var(--chart-line)" stop-opacity="0.2"/>
-                  <stop offset="100%" stop-color="var(--chart-line)" stop-opacity="0"/>
-                </linearGradient>
-              </defs>
-              <line x1="38" y1="10" x2="575" y2="10" stroke="var(--border)" stroke-width="0.6"/>
-              <line x1="38" y1="37" x2="575" y2="37" stroke="var(--border)" stroke-width="0.6"/>
-              <line x1="38" y1="64" x2="575" y2="64" stroke="var(--border)" stroke-width="0.6"/>
-              <line x1="38" y1="91" x2="575" y2="91" stroke="var(--border)" stroke-width="0.6"/>
-              <line x1="38" y1="118" x2="575" y2="118" stroke="var(--border)" stroke-width="0.6"/>
+          <div class="card-body">
+            <svg viewBox="0 0 800 140" xmlns="http://www.w3.org/2000/svg" style="width:100%;display:block">
+              <line x1="38" y1="10" x2="775" y2="10" stroke="var(--border)" stroke-width="0.6"/>
+              <line x1="38" y1="64" x2="775" y2="64" stroke="var(--border)" stroke-width="0.6"/>
+              <line x1="38" y1="118" x2="775" y2="118" stroke="var(--border)" stroke-width="0.6"/>
               <text x="0" y="14" font-size="9" fill="var(--text3)" font-family="DM Mono,monospace">117.0</text>
-              <text x="0" y="41" font-size="9" fill="var(--text3)" font-family="DM Mono,monospace">116.5</text>
               <text x="0" y="68" font-size="9" fill="var(--text3)" font-family="DM Mono,monospace">116.0</text>
-              <text x="0" y="95" font-size="9" fill="var(--text3)" font-family="DM Mono,monospace">115.5</text>
               <text x="0" y="122" font-size="9" fill="var(--text3)" font-family="DM Mono,monospace">115.0</text>
-              <path d="M38,95 C80,88 110,74 150,68 C190,62 220,77 265,71 C310,65 340,52 385,46 C430,40 460,44 500,38 L540,34 L575,32 L575,118 L38,118 Z" fill="url(#g1)"/>
-              <path d="M38,95 C80,88 110,74 150,68 C190,62 220,77 265,71 C310,65 340,52 385,46 C430,40 460,44 500,38 L540,34 L575,32" fill="none" stroke="var(--chart-line)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-              <circle cx="575" cy="32" r="4.5" fill="var(--chart-line)"/>
-              <circle cx="575" cy="32" r="8" fill="var(--chart-line)" opacity="0.18"/>
-              <rect x="524" y="12" width="70" height="18" rx="4" fill="var(--chart-line)"/>
-              <text x="559" y="25" font-size="9" fill="white" text-anchor="middle" font-family="DM Mono,monospace">116.08 mdpl</text>
-              <text x="38" y="132" font-size="9" fill="var(--text3)" text-anchor="middle" font-family="DM Sans,sans-serif">00:00</text>
-              <text x="140" y="132" font-size="9" fill="var(--text3)" text-anchor="middle" font-family="DM Sans,sans-serif">04:00</text>
-              <text x="241" y="132" font-size="9" fill="var(--text3)" text-anchor="middle" font-family="DM Sans,sans-serif">08:00</text>
-              <text x="342" y="132" font-size="9" fill="var(--text3)" text-anchor="middle" font-family="DM Sans,sans-serif">12:00</text>
-              <text x="443" y="132" font-size="9" fill="var(--text3)" text-anchor="middle" font-family="DM Sans,sans-serif">16:00</text>
-              <text x="543" y="132" font-size="9" fill="var(--text3)" text-anchor="middle" font-family="DM Sans,sans-serif">20:00</text>
-              <text x="575" y="132" font-size="9" fill="var(--chart-line)" text-anchor="middle" font-family="DM Sans,sans-serif" font-weight="500">Now</text>
+              <path d="M38,95 C150,88 250,74 380,68 C500,62 650,44 775,38 L775,118 L38,118 Z" fill="rgba(30,95,245,0.1)"/>
+              <path d="M38,95 C150,88 250,74 380,68 C500,62 650,44 775,38" fill="none" stroke="var(--chart-line)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <circle cx="775" cy="38" r="4.5" fill="var(--chart-line)"/>
             </svg>
           </div>
         </div>
 
         <div class="viz-card">
           <div class="card-header">
-            <div>
-              <div class="card-title">Visualisasi Potongan Melintang</div>
-              <div class="card-meta">Posisi sensor instrumentasi pada tubuh bendungan</div>
-            </div>
+            <div><div class="card-title">Visualisasi Potongan Melintang (Cross Section)</div><div class="card-meta">Posisi sensor instrumentasi pada tubuh bendungan</div></div>
           </div>
           <div class="viz-tabs">
             <div class="viz-tab active">STA. 0+180</div>
             <div class="viz-tab">STA. 0+116</div>
           </div>
           <div style="padding:16px;background:var(--surface2)">
-            <svg viewBox="0 0 580 200" xmlns="http://www.w3.org/2000/svg" style="width:100%;display:block">
+            <svg viewBox="0 0 580 200" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:800px;display:block">
               <line x1="30" y1="50" x2="30" y2="180" stroke="var(--text3)" stroke-width="0.5"/>
               <text x="25" y="55" font-size="7" fill="var(--text3)" text-anchor="end" font-family="DM Mono,sans-serif">130</text>
-              <text x="25" y="80" font-size="7" fill="var(--text3)" text-anchor="end" font-family="DM Mono,sans-serif">120</text>
               <text x="25" y="105" font-size="7" fill="var(--text3)" text-anchor="end" font-family="DM Mono,sans-serif">110</text>
-              <text x="25" y="130" font-size="7" fill="var(--text3)" text-anchor="end" font-family="DM Mono,sans-serif">100</text>
               <text x="25" y="155" font-size="7" fill="var(--text3)" text-anchor="end" font-family="DM Mono,sans-serif">90</text>
-              <text x="25" y="180" font-size="7" fill="var(--text3)" text-anchor="end" font-family="DM Mono,sans-serif">80</text>
               <polygon points="35,180 165,55 290,40 415,55 545,180" fill="var(--surface)" stroke="var(--border)" stroke-width="1"/>
               <polygon points="265,60 290,40 315,60 295,180 275,180" fill="var(--surface2)" stroke="var(--border)" stroke-width="0.8"/>
               <text x="290" y="35" font-size="8" fill="var(--text2)" text-anchor="middle" font-family="DM Sans,sans-serif">CL BENDUNGAN</text>
@@ -557,8 +493,198 @@
               <text x="48" y="196" font-size="8" fill="var(--text2)" font-family="DM Sans,sans-serif">Piezometer Online</text>
               <circle cx="145" cy="193" r="5" fill="var(--red)" stroke="white" stroke-width="1.5"/>
               <text x="155" y="196" font-size="8" fill="var(--text2)" font-family="DM Sans,sans-serif">Piezometer Offline</text>
-              <text x="400" y="196" font-size="8" fill="var(--text2)" font-family="DM Sans,sans-serif">9 sensor · Update: 0d lalu</text>
             </svg>
+          </div>
+        </div>
+      </div>
+
+      <div class="page" id="page-trend">
+        <div class="breadcrumb"><a onclick="showPage('dashboard')">Dashboard</a><span>›</span><strong>Grafik & Tren Analisis</strong></div>
+        
+        <div class="card" style="margin-bottom: 16px;">
+          <div class="card-body" style="display:flex; gap:12px; align-items:flex-end; flex-wrap:wrap;">
+            <div style="flex:1; min-width:150px;">
+              <label class="form-label">Pilih Bendungan</label>
+              <select class="form-control"><option selected>Bringin Sila</option><option>Meninting</option></select>
+            </div>
+            <div style="flex:1; min-width:150px;">
+              <label class="form-label">Parameter Analisis</label>
+              <select class="form-control"><option selected>Tinggi Muka Air (30 Hari)</option><option>Curah Hujan (Forecasting)</option></select>
+            </div>
+            <div>
+              <button class="btn primary" style="height: 35px;">Tampilkan Grafik</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <div><div class="card-title">Tren Tinggi Muka Air (TMA)</div><div class="card-meta">Perbandingan elevasi air dengan batas waspada (HWL)</div></div>
+            <button class="btn">Export Chart as PNG</button>
+          </div>
+          <div class="card-body">
+            <svg viewBox="0 0 800 200" xmlns="http://www.w3.org/2000/svg" style="width:100%;display:block">
+              <line x1="40" y1="20" x2="780" y2="20" stroke="var(--border)" stroke-width="0.6"/>
+              <line x1="40" y1="60" x2="780" y2="60" stroke="var(--border)" stroke-width="0.6"/>
+              <line x1="40" y1="100" x2="780" y2="100" stroke="var(--border)" stroke-width="0.6"/>
+              <line x1="40" y1="140" x2="780" y2="140" stroke="var(--border)" stroke-width="0.6"/>
+              <line x1="40" y1="40" x2="780" y2="40" stroke="var(--red)" stroke-width="1.5" stroke-dasharray="5,4" opacity="0.6"/>
+              <text x="775" y="35" font-size="10" fill="var(--red)" text-anchor="end" font-family="DM Sans,sans-serif">Batas Waspada (HWL) 117.5m</text>
+              
+              <text x="0" y="24" font-size="10" fill="var(--text3)" font-family="DM Mono,monospace">118.0</text>
+              <text x="0" y="64" font-size="10" fill="var(--text3)" font-family="DM Mono,monospace">117.0</text>
+              <text x="0" y="104" font-size="10" fill="var(--text3)" font-family="DM Mono,monospace">116.0</text>
+              <text x="0" y="144" font-size="10" fill="var(--text3)" font-family="DM Mono,monospace">115.0</text>
+              
+              <text x="40" y="165" font-size="10" fill="var(--text3)" text-anchor="middle" font-family="DM Sans,sans-serif">1 Apr</text>
+              <text x="225" y="165" font-size="10" fill="var(--text3)" text-anchor="middle" font-family="DM Sans,sans-serif">8 Apr</text>
+              <text x="410" y="165" font-size="10" fill="var(--text3)" text-anchor="middle" font-family="DM Sans,sans-serif">15 Apr</text>
+              <text x="595" y="165" font-size="10" fill="var(--text3)" text-anchor="middle" font-family="DM Sans,sans-serif">22 Apr</text>
+              <text x="780" y="165" font-size="10" fill="var(--text3)" text-anchor="middle" font-family="DM Sans,sans-serif">Now</text>
+              
+              <path d="M40,110 C150,105 250,60 380,85 C500,105 650,45 780,55 L780,140 L40,140 Z" fill="rgba(30,95,245,0.1)"/>
+              <path d="M40,110 C150,105 250,60 380,85 C500,105 650,45 780,55" fill="none" stroke="var(--chart-line)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+              <circle cx="780" cy="55" r="5" fill="var(--surface)" stroke="var(--chart-line)" stroke-width="2"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+
+      <div class="page" id="page-manual">
+        <div class="breadcrumb"><a onclick="showPage('dashboard')">Dashboard</a><span>›</span><strong>Input Data Manual</strong></div>
+        
+        <div style="display: grid; grid-template-columns: 380px 1fr; gap: 16px; align-items: start;">
+          <div class="card">
+            <div class="card-header"><div><div class="card-title">Form Input Pembacaan</div></div></div>
+            <div class="card-body">
+              <div class="form-group"><label class="form-label">Bendungan</label><select class="form-control"><option>Bringin Sila</option></select></div>
+              <div class="form-group"><label class="form-label">Pos / Instrumen</label><select class="form-control"><option>Peilschaal (Papan Duga)</option><option>Penakar Hujan Manual</option></select></div>
+              <div class="form-grid">
+                <div class="form-group"><label class="form-label">Tanggal</label><input type="date" class="form-control"></div>
+                <div class="form-group"><label class="form-label">Jam (WITA)</label><input type="time" class="form-control"></div>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Nilai Terukur</label>
+                <div style="display:flex;gap:8px;"><input type="number" class="form-control" placeholder="0.00"><span style="display:flex;align-items:center;font-size:12px;color:var(--text3)">mdpl</span></div>
+              </div>
+              <div class="form-group"><label class="form-label">Catatan Lapangan</label><textarea class="form-control" style="min-height:70px" placeholder="Tulis keterangan cuaca/kondisi visual..."></textarea></div>
+              <button class="btn primary" style="width:100%; padding:10px;">Simpan Data ke Database</button>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-header"><div><div class="card-title">Log Input Manual Terakhir</div></div></div>
+            <div class="table-wrap">
+              <table class="data-table">
+                <thead><tr><th>Waktu Input</th><th>POS</th><th>Petugas</th><th>Nilai</th><th>Status Validasi</th></tr></thead>
+                <tbody>
+                  <tr><td>27 Apr, 08:00</td><td>Peilschaal</td><td>Operator Lapangan</td><td style="font-family:monospace;font-weight:bold">116.10 mdpl</td><td><span class="badge badge-green">Tervalidasi</span></td></tr>
+                  <tr><td>26 Apr, 08:00</td><td>Peilschaal</td><td>Operator Lapangan</td><td style="font-family:monospace;font-weight:bold">116.15 mdpl</td><td><span class="badge badge-green">Tervalidasi</span></td></tr>
+                  <tr><td>26 Apr, 07:30</td><td>ARR Manual</td><td>Aris Nugroho</td><td style="font-family:monospace;font-weight:bold">12.5 mm</td><td><span class="badge badge-amber">Pending</span></td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="page" id="page-history">
+        <div class="breadcrumb"><a onclick="showPage('dashboard')">Dashboard</a><span>›</span><strong>Riwayat Data (Tabular)</strong></div>
+        
+        <div class="card" style="margin-bottom: 16px;">
+          <div class="card-body" style="display:flex; gap:12px; align-items:flex-end; flex-wrap:wrap;">
+            <div style="flex:1"><label class="form-label">Bendungan</label><select class="form-control"><option>Bringin Sila</option></select></div>
+            <div style="flex:1"><label class="form-label">Instrumen</label><select class="form-control"><option>Pos AWLR (Level Air)</option></select></div>
+            <div style="flex:1"><label class="form-label">Dari Tanggal</label><input type="date" class="form-control"></div>
+            <div style="flex:1"><label class="form-label">Sampai Tanggal</label><input type="date" class="form-control"></div>
+            <div><button class="btn primary" style="height:35px">Filter Data</button></div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <div><div class="card-title">Data Pengukuran Mentah</div><div class="card-meta">Menampilkan 5 dari 14.200 baris</div></div>
+            <div style="display:flex; gap:8px;"><button class="btn">Download CSV</button><button class="btn">Export Excel</button></div>
+          </div>
+          <div class="table-wrap">
+            <table class="data-table">
+              <thead><tr><th>Timestamp</th><th>Nama POS</th><th>Parameter</th><th>Nilai</th><th>Satuan</th><th>Sumber Data</th></tr></thead>
+              <tbody>
+                <tr><td>2026-04-27 12:00:00</td><td>Pos AWLR</td><td>Tinggi_Muka_Air</td><td style="font-family:monospace;">116.08</td><td>mdpl</td><td><span class="badge badge-gray">Auto Logger</span></td></tr>
+                <tr><td>2026-04-27 11:45:00</td><td>Pos AWLR</td><td>Tinggi_Muka_Air</td><td style="font-family:monospace;">116.08</td><td>mdpl</td><td><span class="badge badge-gray">Auto Logger</span></td></tr>
+                <tr><td>2026-04-27 11:30:00</td><td>Pos AWLR</td><td>Tinggi_Muka_Air</td><td style="font-family:monospace;">116.09</td><td>mdpl</td><td><span class="badge badge-gray">Auto Logger</span></td></tr>
+                <tr><td>2026-04-27 11:15:00</td><td>Pos AWLR</td><td>Battery_Logger</td><td style="font-family:monospace; color:var(--red)">11.80</td><td>Volt</td><td><span class="badge badge-gray">Auto Logger</span></td></tr>
+                <tr><td>2026-04-27 08:00:00</td><td>Pos Peilschaal</td><td>Tinggi_Muka_Air</td><td style="font-family:monospace;">116.10</td><td>mdpl</td><td><span class="badge badge-blue">Input Manual</span></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <div class="page" id="page-calibration">
+        <div class="breadcrumb"><a onclick="showPage('dashboard')">Dashboard</a><span>›</span>Konfigurasi<span>›</span><strong>Manajemen Kalibrasi Sensor</strong></div>
+        
+        <div class="card">
+          <div class="card-header">
+            <div><div class="card-title">Daftar Instrumen & Status Kalibrasi</div><div class="card-meta">Pantau jadwal kalibrasi dan offset sensor otomatis</div></div>
+          </div>
+          <div class="table-wrap">
+            <table class="data-table">
+              <thead><tr><th>ID Sensor</th><th>Lokasi</th><th>Parameter</th><th>Kalibrasi Terakhir</th><th>Offset Saat Ini</th><th>Status</th><th>Aksi</th></tr></thead>
+              <tbody>
+                <tr>
+                  <td>S-AWLR-01</td><td>Bringin Sila</td><td>Level Air</td><td>10 Jan 2026</td><td style="font-family:monospace">+0.02 m</td>
+                  <td><span class="badge badge-green">Akurat</span></td>
+                  <td><button class="btn" style="padding:4px 8px">Ubah Offset</button></td>
+                </tr>
+                <tr>
+                  <td>S-PZ-10</td><td>Bringin Sila</td><td>Piezometer</td><td>15 Okt 2025</td><td style="font-family:monospace">-0.001 Mpa</td>
+                  <td><span class="badge badge-amber">Mendekati Jadwal</span></td>
+                  <td><button class="btn" style="padding:4px 8px">Jadwalkan</button></td>
+                </tr>
+                <tr>
+                  <td>S-RAIN-02</td><td>Meninting</td><td>Curah Hujan</td><td>02 Mar 2024</td><td style="font-family:monospace">0.00 mm</td>
+                  <td><span class="badge badge-red">Drift Terdeteksi</span></td>
+                  <td><button class="btn primary" style="padding:4px 8px">Kalibrasi Ulang</button></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <div class="page" id="page-user">
+        <div class="breadcrumb"><a onclick="showPage('dashboard')">Dashboard</a><span>›</span>Konfigurasi<span>›</span><strong>Kelola Pengguna Sistem</strong></div>
+        
+        <div class="card">
+          <div class="card-header">
+            <div><div class="card-title">Daftar Pengguna (RBAC)</div><div class="card-meta">Kontrol hak akses tim lapangan dan administrator</div></div>
+            <button class="btn primary">+ Tambah Pengguna Baru</button>
+          </div>
+          <div class="table-wrap">
+            <table class="data-table">
+              <thead><tr><th>Nama Lengkap</th><th>Email / Username</th><th>Role Akses</th><th>Akses Wilayah</th><th>Status Akun</th><th>Aksi</th></tr></thead>
+              <tbody>
+                <tr>
+                  <td style="font-weight:500; color:var(--text)">Aris Nugroho</td><td>aris.dev@smbn.go.id</td>
+                  <td><span class="badge badge-blue">Super Admin</span></td><td>Semua Bendungan</td>
+                  <td><span class="badge badge-green">Aktif</span></td>
+                  <td><button class="btn" style="padding:4px 8px">Edit</button></td>
+                </tr>
+                <tr>
+                  <td style="font-weight:500; color:var(--text)">Budi Santoso</td><td>op.bringinsila@smbn.go.id</td>
+                  <td><span class="badge badge-gray">Admin Bendungan</span></td><td>Bringin Sila</td>
+                  <td><span class="badge badge-green">Aktif</span></td>
+                  <td><button class="btn" style="padding:4px 8px">Edit</button></td>
+                </tr>
+                <tr>
+                  <td style="font-weight:500; color:var(--text)">Herman</td><td>herman.lapangan@smbn.go.id</td>
+                  <td><span class="badge badge-gray">Operator Lapangan</span></td><td>Meninting</td>
+                  <td><span class="badge badge-red">Nonaktif</span></td>
+                  <td><button class="btn" style="padding:4px 8px">Aktifkan</button></td>
+                </tr>
+              </tbody>
+            </table>
           </div>
         </div>
       </div>
@@ -570,109 +696,95 @@
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 
 <script>
-  // Script asli perpindahan halaman dan tema
+  // Fungsi utama perpindahan halaman
   function showPage(name) {
-    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-    document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
-    document.getElementById('page-' + name).classList.add('active');
-    document.getElementById('nav-' + name).classList.add('active');
-    
-    // Paksa map untuk merender ulang ukuran jika tab diganti
-    if(name === 'dashboard' && window.map) {
-      setTimeout(() => { window.map.invalidateSize(); }, 100);
-    }
+    try {
+      // 1. Sembunyikan semua page & matikan warna active di menu
+      document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+      document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+      
+      // 2. Tampilkan page yang dituju & nyalakan warna di menu dengan pengecekan elemen
+      const pageEl = document.getElementById('page-' + name);
+      const navEl = document.getElementById('nav-' + name);
+      
+      if(pageEl) pageEl.classList.add('active');
+      if(navEl) navEl.classList.add('active');
+      
+      // 3. Render ulang peta Leaflet jika kembali ke Dashboard agar ukurannya akurat (mencegah error abu-abu)
+      if(name === 'dashboard' && window.damMapInstance) {
+        setTimeout(() => { window.damMapInstance.invalidateSize(); }, 200);
+      }
 
-    const titles = {
-      dashboard: ['Dashboard', 'Overview monitoring real-time bendungan'],
-      sensor: ['Data Sensor Real-time', 'Bendungan Bringin Sila']
-    };
-    document.querySelector('.topbar-title').textContent = titles[name][0];
-    document.querySelector('.topbar-sub').textContent = titles[name][1];
+      // 4. Ganti Title dan Subtitle di Topbar berdasarkan halaman
+      const titles = {
+        dashboard: ['Dashboard Monitoring', 'Overview status real-time bendungan secara nasional'],
+        sensor: ['Data Sensor Real-time', 'Pemantauan instrumen otomatis Bendungan Bringin Sila'],
+        trend: ['Analisis Grafik & Tren', 'Visualisasi data historis dan peramalan (forecasting) TMA'],
+        manual: ['Input Data Manual', 'Pencatatan data instrumen secara manual (Peilschaal, dsb)'],
+        history: ['Riwayat Data Tabular', 'Tabel log historis logger dan export report (CSV/Excel)'],
+        calibration: ['Manajemen Kalibrasi', 'Pemantauan jadwal kalibrasi dan pengaturan offset sensor'],
+        user: ['Manajemen Pengguna', 'Kelola hak akses dan akun tim pengelola bendungan']
+      };
+      
+      if(titles[name]) {
+        document.querySelector('.topbar-title').textContent = titles[name][0];
+        document.querySelector('.topbar-sub').textContent = titles[name][1];
+      }
+    } catch (error) {
+      console.error("Terjadi error saat navigasi:", error);
+    }
   }
 
+  // Fungsi toggle Tema Gelap/Terang
   function toggleTheme() {
     document.getElementById('app').classList.toggle('dark');
   }
 
+  // Fungsi Jam Real-time
   function updateClock() {
     const now = new Date();
     const h = String(now.getHours()).padStart(2,'0');
     const m = String(now.getMinutes()).padStart(2,'0');
-    document.getElementById('clock').textContent = h + ':' + m;
+    const clockEl = document.getElementById('clock');
+    if(clockEl) clockEl.textContent = h + ':' + m;
   }
-  updateClock();
+  updateClock(); 
   setInterval(updateClock, 10000);
 
-  document.querySelectorAll('.period-btn').forEach(btn => {
-    btn.addEventListener('click', function() {
-      this.closest('.period-btns').querySelectorAll('.period-btn').forEach(b => b.classList.remove('active'));
-      this.classList.add('active');
-    });
-  });
-  document.querySelectorAll('.tab').forEach(tab => {
-    tab.addEventListener('click', function() {
-      this.closest('.tab-row').querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-      this.classList.add('active');
-    });
-  });
-  document.querySelectorAll('.sensor-chip').forEach(chip => {
-    chip.addEventListener('click', function() { this.classList.toggle('active'); });
-  });
-  document.querySelectorAll('.viz-tab').forEach(tab => {
-    tab.addEventListener('click', function() {
-      this.closest('.viz-tabs').querySelectorAll('.viz-tab').forEach(t => t.classList.remove('active'));
-      this.classList.add('active');
-    });
-  });
-
-  // --- INISIASI PETA LEAFLET ---
+  // Inisiasi Peta Leaflet (Berjalan otomatis saat halaman pertama dimuat)
   document.addEventListener("DOMContentLoaded", function() {
-    // Koordinat pusat peta diset di wilayah Lombok / Sumbawa
-    window.map = L.map('damMap').setView([-8.65, 116.5], 8);
+    const mapContainer = document.getElementById('damMap');
+    if (mapContainer && typeof L !== 'undefined') {
+      // Set koordinat ke area NTB (Lombok & Sumbawa)
+      window.damMapInstance = L.map('damMap').setView([-8.65, 116.5], 8);
+      
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { 
+        maxZoom: 18, 
+        attribution: '© OpenStreetMap' 
+      }).addTo(window.damMapInstance);
 
-    // Menggunakan tile OpenStreetMap
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      maxZoom: 18,
-      attribution: '© OpenStreetMap'
-    }).addTo(map);
-
-    // Fungsi untuk membuat marker khusus (mirip style mockup awal)
-    const createMarkerIcon = (color) => {
-      return L.divIcon({
+      // Desain Marker Custom menggunakan HTML/CSS
+      const createMarkerIcon = (color) => L.divIcon({
         className: 'custom-leaflet-marker',
         html: `<div style="background-color: ${color}; width: 14px; height: 14px; border-radius: 50%; border: 2px solid white; box-shadow: 0 0 5px rgba(0,0,0,0.4);"></div>`,
-        iconSize: [14, 14],
-        iconAnchor: [7, 7]
+        iconSize: [14, 14], iconAnchor: [7, 7]
       });
-    };
 
-    const iconGreen = createMarkerIcon('#16a34a');
-    const iconAmber = createMarkerIcon('#d97706');
-    const iconRed = createMarkerIcon('#dc2626');
+      // Titik Koordinat Bendungan
+      const damLocations = [
+        { name: "Meninting", coords: [-8.544, 116.124], icon: createMarkerIcon('#d97706'), status: "5/8 POS Aktif" },
+        { name: "Pandanduri", coords: [-8.706, 116.480], icon: createMarkerIcon('#dc2626'), status: "2/6 POS Aktif" },
+        { name: "Bringin Sila", coords: [-8.563, 117.036], icon: createMarkerIcon('#16a34a'), status: "4/4 POS Aktif" },
+        { name: "Bintang Bano", coords: [-8.748, 116.941], icon: createMarkerIcon('#16a34a'), status: "3/3 POS Aktif" },
+        { name: "Tiu Suntuk", coords: [-8.781, 116.895], icon: createMarkerIcon('#16a34a'), status: "4/4 POS Aktif" }
+      ];
 
-    // Data Bendungan (Koordinat Perkiraan di NTB)
-    const damLocations = [
-      { name: "Meninting", coords: [-8.544, 116.124], icon: iconAmber, status: "5/8 POS Aktif" },
-      { name: "Pandanduri", coords: [-8.706, 116.480], icon: iconRed, status: "2/6 POS Aktif" },
-      { name: "Bringin Sila", coords: [-8.563, 117.036], icon: iconGreen, status: "4/4 POS Aktif" },
-      { name: "Bintang Bano", coords: [-8.748, 116.941], icon: iconGreen, status: "3/3 POS Aktif" },
-      { name: "Tiu Suntuk", coords: [-8.781, 116.895], icon: iconGreen, status: "4/4 POS Aktif" }
-    ];
-
-    // Tambahkan marker ke peta
-    damLocations.forEach(dam => {
-      const marker = L.marker(dam.coords, {icon: dam.icon}).addTo(map);
-      
-      // Popup saat di klik
-      const popupContent = `
-        <div style="font-family: 'DM Sans', sans-serif; text-align: center;">
-          <strong style="font-size: 13px;">${dam.name}</strong><br>
-          <span style="font-size: 11px; color: #555;">Status: ${dam.status}</span><br>
-          <button onclick="showPage('sensor')" style="margin-top: 8px; background: #1e5ff5; color: white; border: none; padding: 4px 10px; border-radius: 4px; cursor: pointer; font-size: 11px;">Lihat Detail</button>
-        </div>
-      `;
-      marker.bindPopup(popupContent);
-    });
+      // Looping untuk merender titik di atas peta
+      damLocations.forEach(dam => {
+        const marker = L.marker(dam.coords, {icon: dam.icon}).addTo(window.damMapInstance);
+        marker.bindPopup(`<div style="font-family:'DM Sans',sans-serif;text-align:center;"><strong style="font-size:13px;">${dam.name}</strong><br><span style="font-size:11px;color:#555;">Status: ${dam.status}</span><br><button onclick="showPage('sensor')" style="margin-top:8px;background:#1e5ff5;color:white;border:none;padding:4px 10px;border-radius:4px;cursor:pointer;font-size:11px;">Lihat Detail</button></div>`);
+      });
+    }
   });
 </script>
 </body>
