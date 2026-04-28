@@ -129,19 +129,20 @@ html, body { height: 100%; font-family: 'DM Sans', system-ui, sans-serif; backgr
 .sidebar-nav { flex: 1; padding: 10px 8px; overflow-y: auto; }
 .sidebar-nav::-webkit-scrollbar { width: 0; }
 .nav-section-label {
-  font-size: 9.5px; color: rgba(255,255,255,0.2);
+  font-size: 10px; color: rgba(255,255,255,0.3);
   text-transform: uppercase; letter-spacing: 0.1em;
-  padding: 12px 10px 5px;
-  font-weight: 500;
+  padding: 14px 12px 6px;
+  font-weight: 600;
 }
 .nav-item {
-  display: flex; align-items: center; gap: 9px;
-  padding: 8px 10px; border-radius: 8px;
+  display: flex; align-items: center; gap: 10px;
+  padding: 9px 12px; border-radius: 8px;
   color: var(--sidebar-text); cursor: pointer;
-  margin-bottom: 2px; font-size: 12.5px;
+  margin-bottom: 3px; font-size: 13.5px;
   transition: background var(--transition), color var(--transition);
   border-left: 2px solid transparent;
   user-select: none; position: relative;
+  font-weight: 400;
 }
 .nav-item:hover { background: var(--sidebar-hover); color: rgba(255,255,255,0.8); }
 .nav-item.active {
@@ -149,13 +150,14 @@ html, body { height: 100%; font-family: 'DM Sans', system-ui, sans-serif; backgr
   color: #fff;
   border-left-color: var(--sidebar-active-border);
 }
-.nav-item svg { width: 15px; height: 15px; flex-shrink: 0; opacity: 0.7; }
+.nav-item svg { width: 17px; height: 17px; flex-shrink: 0; opacity: 0.75; }
 .nav-item.active svg { opacity: 1; }
 .nav-badge {
-  margin-left: auto; font-size: 9px;
+  margin-left: auto; font-size: 10px;
   background: var(--red); color: #fff;
-  padding: 1px 5px; border-radius: 10px;
+  padding: 2px 6px; border-radius: 10px;
   font-family: 'DM Mono', monospace;
+  font-weight: 600;
 }
 .nav-badge.amber { background: var(--amber); color: #fff; }
 
@@ -165,13 +167,13 @@ html, body { height: 100%; font-family: 'DM Sans', system-ui, sans-serif; backgr
   flex-shrink: 0;
 }
 .user-avatar {
-  width: 30px; height: 30px; background: var(--accent);
+  width: 32px; height: 32px; background: var(--accent);
   border-radius: 50%; display: flex; align-items: center;
-  justify-content: center; color: #fff; font-size: 11px; font-weight: 600;
+  justify-content: center; color: #fff; font-size: 12px; font-weight: 700;
   flex-shrink: 0;
 }
-.user-name { color: rgba(255,255,255,0.82); font-size: 12px; font-weight: 500; }
-.user-role { color: rgba(255,255,255,0.3); font-size: 10px; font-family: 'DM Mono', monospace; }
+.user-name { color: rgba(255,255,255,0.9); font-size: 13px; font-weight: 600; }
+.user-role { color: rgba(255,255,255,0.4); font-size: 10.5px; font-family: 'DM Mono', monospace; }
 
 /* ══════════════════════════════════════════
    MAIN AREA
@@ -187,16 +189,16 @@ html, body { height: 100%; font-family: 'DM Sans', system-ui, sans-serif; backgr
   position: relative; z-index: 10;
 }
 .topbar-left { display: flex; flex-direction: column; gap: 1px; }
-.topbar-title { font-size: 14.5px; font-weight: 600; letter-spacing: -0.02em; }
-.topbar-sub { font-size: 11px; color: var(--text3); }
+.topbar-title { font-size: 15.5px; font-weight: 700; letter-spacing: -0.02em; }
+.topbar-sub { font-size: 12px; color: var(--text2); }
 .topbar-right { display: flex; align-items: center; gap: 8px; }
 
 .live-badge {
   display: flex; align-items: center; gap: 6px;
   background: var(--green-bg); color: var(--green);
-  font-size: 11px; font-weight: 500;
-  padding: 4px 11px; border-radius: 20px;
-  border: 1px solid rgba(22,163,74,0.15);
+  font-size: 12px; font-weight: 600;
+  padding: 5px 12px; border-radius: 20px;
+  border: 1px solid rgba(22,163,74,0.2);
 }
 .live-dot {
   width: 6px; height: 6px; background: var(--green);
@@ -246,14 +248,14 @@ html, body { height: 100%; font-family: 'DM Sans', system-ui, sans-serif; backgr
   display: flex; align-items: center; justify-content: space-between;
   flex-wrap: wrap; gap: 8px;
 }
-.card-title { font-size: 13px; font-weight: 600; letter-spacing: -0.01em; }
-.card-meta { font-size: 11px; color: var(--text3); margin-top: 2px; }
+.card-title { font-size: 14px; font-weight: 700; letter-spacing: -0.01em; }
+.card-meta { font-size: 12px; color: var(--text2); margin-top: 2px; }
 .card-body { padding: 16px; }
 
 .badge {
   display: inline-flex; align-items: center; gap: 4px;
-  padding: 2px 8px; border-radius: 20px;
-  font-size: 10.5px; font-weight: 500;
+  padding: 3px 9px; border-radius: 20px;
+  font-size: 11.5px; font-weight: 600;
 }
 .badge-green { background: var(--green-bg); color: var(--green); }
 .badge-amber { background: var(--amber-bg); color: var(--amber); }
@@ -343,7 +345,7 @@ textarea.form-control { resize: vertical; min-height: 80px; }
   border-radius: var(--radius); padding: 10px 16px; margin-bottom: 16px;
 }
 .alert-banner-icon { font-size: 14px; flex-shrink: 0; }
-.alert-banner-text { flex: 1; font-size: 12px; color: var(--text2); }
+.alert-banner-text { flex: 1; font-size: 13px; color: var(--text2); }
 .alert-banner-text strong { color: var(--red); }
 
 /* ══════════════════════════════════════════
@@ -352,25 +354,31 @@ textarea.form-control { resize: vertical; min-height: 80px; }
 .stat-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 12px; margin-bottom: 16px; }
 .stat-card {
   background: var(--surface); border: 1px solid var(--border);
-  border-radius: var(--radius); padding: 14px 16px;
+  border-radius: var(--radius); padding: 16px 18px;
   box-shadow: var(--shadow); position: relative; overflow: hidden;
   cursor: default; transition: transform var(--transition), box-shadow var(--transition);
 }
 .stat-card:hover { transform: translateY(-1px); box-shadow: var(--shadow-md); }
 .stat-card-accent { position: absolute; top: 0; left: 0; right: 0; height: 2px; }
-.stat-icon { width: 34px; height: 34px; border-radius: 9px; display: flex; align-items: center; justify-content: center; margin-bottom: 12px; }
-.stat-label { font-size: 11px; color: var(--text3); margin-bottom: 4px; font-weight: 500; letter-spacing: 0.01em; }
-.stat-num { font-size: 26px; font-weight: 600; letter-spacing: -0.03em; color: var(--text); line-height: 1; }
-.stat-num small { font-size: 14px; color: var(--text3); font-weight: 400; }
-.stat-footer { margin-top: 8px; font-size: 11px; color: var(--text3); }
+.stat-icon { width: 38px; height: 38px; border-radius: 10px; display: flex; align-items: center; justify-content: center; margin-bottom: 12px; }
+.stat-label { font-size: 12.5px; color: var(--text2); margin-bottom: 5px; font-weight: 500; letter-spacing: 0.01em; }
+.stat-num { font-size: 30px; font-weight: 700; letter-spacing: -0.03em; color: var(--text); line-height: 1; }
+.stat-num small { font-size: 16px; color: var(--text2); font-weight: 400; }
+.stat-footer { margin-top: 8px; font-size: 12px; color: var(--text2); }
 .stat-change { font-size: 11px; }
 .stat-change.pos { color: var(--green); }
 .stat-change.neg { color: var(--red); }
 .stat-change.warn { color: var(--amber); }
 
 .dashboard-grid { display: grid; grid-template-columns: 1fr 288px; gap: 14px; margin-bottom: 14px; }
-.map-wrap { height: 275px; border-radius: 0 0 var(--radius) var(--radius); background: var(--surface2); overflow: hidden; }
-.map-legend { display: flex; gap: 16px; padding: 8px 16px; border-top: 1px solid var(--border); font-size: 11px; color: var(--text3); flex-wrap: wrap; }
+.map-wrap { height: 275px; border-radius: 0 0 var(--radius) var(--radius); background: var(--surface2); overflow: hidden; isolation: isolate; position: relative; z-index: 0; }
+/* Ensure ALL Leaflet layers are strictly contained; notif-overlay (z-index:200) must always win */
+#damMap { position: relative; z-index: 0 !important; }
+.leaflet-pane, .leaflet-map-pane, .leaflet-tile-pane,
+.leaflet-overlay-pane, .leaflet-shadow-pane,
+.leaflet-marker-pane, .leaflet-tooltip-pane,
+.leaflet-popup-pane, .leaflet-control { position: relative; }
+.map-legend { display: flex; gap: 16px; padding: 9px 16px; border-top: 1px solid var(--border); font-size: 12px; color: var(--text2); flex-wrap: wrap; }
 .legend-dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; margin-right: 5px; vertical-align: middle; }
 
 .sensor-list-item {
@@ -381,14 +389,14 @@ textarea.form-control { resize: vertical; min-height: 80px; }
 .sensor-list-item:last-child { border-bottom: none; }
 .sensor-list-item:hover { background: var(--surface2); }
 .status-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
-.s-name { font-size: 12.5px; font-weight: 500; }
-.s-loc { font-size: 11px; color: var(--text3); }
+.s-name { font-size: 13.5px; font-weight: 600; }
+.s-loc { font-size: 12px; color: var(--text2); }
 
 .alert-item { display: flex; gap: 10px; padding: 10px 14px; border-bottom: 1px solid var(--border); }
 .alert-item:last-child { border-bottom: none; }
 .alert-dot { width: 7px; height: 7px; border-radius: 50%; margin-top: 5px; flex-shrink: 0; }
-.alert-msg { font-size: 12px; color: var(--text); line-height: 1.45; }
-.alert-time { font-size: 10.5px; color: var(--text3); margin-top: 2px; }
+.alert-msg { font-size: 13px; color: var(--text); line-height: 1.5; font-weight: 500; }
+.alert-time { font-size: 11.5px; color: var(--text2); margin-top: 3px; }
 .alert-item.critical { background: var(--red-light); }
 .alert-item.warning { background: var(--amber-light); }
 
@@ -417,8 +425,8 @@ textarea.form-control { resize: vertical; min-height: 80px; }
 .param-row:last-child { border-bottom: none; }
 .param-row:hover { background: var(--surface2); }
 .p-dot { width: 6px; height: 6px; border-radius: 50%; margin-right: 9px; flex-shrink: 0; }
-.p-name { flex: 1; font-size: 12px; color: var(--text2); }
-.p-val { font-size: 12px; font-weight: 500; font-family: 'DM Mono', monospace; }
+.p-name { flex: 1; font-size: 12.5px; color: var(--text2); }
+.p-val { font-size: 12.5px; font-weight: 600; font-family: 'DM Mono', monospace; }
 .p-trend { font-size: 10px; margin-left: 8px; min-width: 40px; text-align: right; font-family: 'DM Mono', monospace; }
 .p-trend.up { color: var(--red); }
 .p-trend.down { color: var(--green); }
@@ -461,8 +469,8 @@ textarea.form-control { resize: vertical; min-height: 80px; }
    NOTIFICATION PANEL (slide-over)
 ══════════════════════════════════════════ */
 .notif-overlay {
-  position: fixed; inset: 0; background: rgba(0,0,0,0.3);
-  z-index: 200; opacity: 0; pointer-events: none;
+  position: fixed; inset: 0; background: rgba(0,0,0,0.4);
+  z-index: 9000; opacity: 0; pointer-events: none;
   transition: opacity 0.2s;
 }
 .notif-overlay.open { opacity: 1; pointer-events: all; }
@@ -473,6 +481,7 @@ textarea.form-control { resize: vertical; min-height: 80px; }
   display: flex; flex-direction: column;
   transform: translateX(100%); transition: transform 0.25s ease;
   box-shadow: var(--shadow-md);
+  z-index: 9001;
 }
 .notif-overlay.open .notif-panel { transform: translateX(0); }
 .notif-header { padding: 16px; border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; }
@@ -528,6 +537,206 @@ textarea.form-control { resize: vertical; min-height: 80px; }
 .w-full { width: 100%; }
 .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
 .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; }
+
+/* ══════════════════════════════════════════
+   IMPROVEMENT: SIDEBAR OVERLAY (MOBILE)
+══════════════════════════════════════════ */
+.sidebar-overlay {
+  display: none;
+  position: fixed; inset: 0;
+  background: rgba(0,0,0,0.5);
+  z-index: 8990;
+  backdrop-filter: blur(2px);
+}
+.sidebar-overlay.open { display: block; }
+
+/* ══════════════════════════════════════════
+   IMPROVEMENT: HAMBURGER BUTTON
+══════════════════════════════════════════ */
+.hamburger {
+  display: none;
+  flex-direction: column; gap: 4px;
+  cursor: pointer; padding: 6px;
+  border-radius: 6px; border: 1px solid var(--border);
+  background: var(--surface2);
+  margin-right: 8px;
+}
+.hamburger span {
+  display: block; width: 16px; height: 1.8px;
+  background: var(--text2); border-radius: 2px;
+  transition: all 0.2s;
+}
+
+/* ══════════════════════════════════════════
+   IMPROVEMENT: BOTTOM NAV BAR (MOBILE)
+══════════════════════════════════════════ */
+.bottom-nav {
+  display: none;
+  position: fixed; bottom: 0; left: 0; right: 0;
+  background: var(--surface);
+  border-top: 1px solid var(--border);
+  z-index: 8980;
+  padding: 6px 0 env(safe-area-inset-bottom, 6px);
+  box-shadow: 0 -2px 12px rgba(0,0,0,0.08);
+}
+.bottom-nav-inner {
+  display: flex; justify-content: space-around; align-items: stretch;
+}
+.bottom-nav-item {
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: 2px; flex: 1; padding: 6px 4px;
+  cursor: pointer; color: var(--text3);
+  font-size: 9.5px; font-weight: 500;
+  border-radius: 8px; transition: color var(--transition);
+  position: relative;
+}
+.bottom-nav-item svg { width: 20px; height: 20px; }
+.bottom-nav-item.active { color: var(--accent); }
+.bottom-nav-item .bnav-badge {
+  position: absolute; top: 4px; right: calc(50% - 14px);
+  background: var(--red); color: #fff;
+  font-size: 8px; font-weight: 600;
+  padding: 0 4px; border-radius: 8px;
+  min-width: 14px; text-align: center;
+  line-height: 14px; height: 14px;
+}
+
+/* ══════════════════════════════════════════
+   IMPROVEMENT: MOBILE CONTENT PADDING
+══════════════════════════════════════════ */
+.content-padded { padding-bottom: 0; }
+
+/* ══════════════════════════════════════════
+   IMPROVEMENT: STAT CARD MINI ROW (mobile)
+══════════════════════════════════════════ */
+.stat-mini-bar {
+  display: none;
+  overflow-x: auto; gap: 10px;
+  padding: 10px 16px 0;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+.stat-mini-bar::-webkit-scrollbar { display: none; }
+.stat-mini-item {
+  flex-shrink: 0;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 10px 14px;
+  min-width: 130px;
+  box-shadow: var(--shadow-sm);
+}
+.stat-mini-item .smi-label { font-size: 10px; color: var(--text3); margin-bottom: 3px; }
+.stat-mini-item .smi-val { font-size: 20px; font-weight: 600; letter-spacing: -0.03em; line-height: 1; }
+.stat-mini-item .smi-footer { margin-top: 4px; font-size: 10px; }
+
+/* ══════════════════════════════════════════
+   IMPROVEMENT: SCROLL HINT (horizontal)
+══════════════════════════════════════════ */
+.scroll-hint {
+  display: none;
+  font-size: 10px; color: var(--text3);
+  text-align: center; padding: 4px 0 0;
+  letter-spacing: 0.03em;
+}
+
+/* ══════════════════════════════════════════
+   RESPONSIVE BREAKPOINTS
+══════════════════════════════════════════ */
+
+/* ── Tablet: 900px ── */
+@media (max-width: 900px) {
+  .sidebar { width: 190px; min-width: 190px; }
+  .stat-grid { grid-template-columns: repeat(2, 1fr); }
+  .dashboard-grid { grid-template-columns: 1fr; }
+  .pos-grid { grid-template-columns: repeat(2, 1fr); }
+  .grid-2 { grid-template-columns: 1fr; }
+  .grid-3 { grid-template-columns: 1fr 1fr; }
+  .chart-stat-row { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* ── Mobile: 700px ── */
+@media (max-width: 700px) {
+  /* Hide desktop sidebar */
+  .sidebar {
+    position: fixed; top: 0; left: 0; bottom: 0;
+    transform: translateX(-100%);
+    transition: transform 0.28s cubic-bezier(.4,0,.2,1);
+    z-index: 9000;
+    width: 240px !important;
+    min-width: 240px !important;
+  }
+  .sidebar.open { transform: translateX(0); }
+
+  /* Show hamburger */
+  .hamburger { display: flex; }
+
+  /* Topbar adjustment */
+  .topbar { padding: 0 14px; height: 48px; }
+  .topbar-title { font-size: 13.5px; }
+  .topbar-sub { display: none; }
+  .live-badge { font-size: 10px; padding: 3px 8px; }
+  /* Hide clock on mobile to save space */
+  #clock { display: none; }
+
+  /* Show bottom nav */
+  .bottom-nav { display: block; }
+
+  /* Content gets padding for bottom nav */
+  .content { padding: 14px 14px 80px; }
+  .content-padded { padding-bottom: 80px; }
+
+  /* Hide desktop stat grid, show mini bar */
+  .stat-grid { display: none; }
+  .stat-mini-bar { display: flex; }
+  .scroll-hint { display: block; }
+
+  /* Stack all grids to single column */
+  .dashboard-grid { grid-template-columns: 1fr !important; }
+  .pos-grid { grid-template-columns: 1fr !important; }
+  .grid-2 { grid-template-columns: 1fr !important; }
+  .grid-3 { grid-template-columns: 1fr !important; }
+  .chart-stat-row { grid-template-columns: repeat(2, 1fr); }
+  .form-grid { grid-template-columns: 1fr; }
+
+  /* Map height on mobile */
+  .map-wrap { height: 230px; }
+
+  /* Alert banner */
+  .alert-banner { flex-wrap: wrap; }
+
+  /* Tab rows become scrollable */
+  .tab-row { overflow-x: auto; width: 100%; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
+  .tab-row::-webkit-scrollbar { display: none; }
+
+  /* Controls row wrap */
+  .chart-controls { flex-direction: column; align-items: flex-start; }
+
+  /* Alert rows */
+  .alert-row { flex-wrap: wrap; }
+  .alert-actions { margin-top: 6px; }
+
+  /* Table horizontal scroll */
+  .table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+
+  /* Notification panel full width on mobile */
+  .notif-panel { width: 100%; }
+
+  /* Period buttons scroll */
+  .period-btns { overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
+  .period-btns::-webkit-scrollbar { display: none; }
+
+  /* Sensor page controls wrap nicely */
+  #page-sensor > div:first-of-type { flex-direction: column; align-items: stretch !important; }
+}
+
+/* ── Small mobile: 400px ── */
+@media (max-width: 400px) {
+  .content { padding: 10px 10px 80px; }
+  .topbar { padding: 0 10px; }
+  .chart-stat-row { grid-template-columns: 1fr 1fr; }
+  .stat-mini-item { min-width: 110px; }
+}
 </style>
 </head>
 <body>
@@ -601,9 +810,14 @@ textarea.form-control { resize: vertical; min-height: 80px; }
   <!-- ════════════════ MAIN ════════════════ -->
   <div class="main">
     <header class="topbar">
-      <div class="topbar-left" id="topbar-info">
-        <div class="topbar-title">Dashboard Monitoring</div>
-        <div class="topbar-sub">Overview status real-time seluruh bendungan</div>
+      <div style="display:flex;align-items:center;gap:0">
+        <div class="hamburger" id="hamburgerBtn" onclick="toggleSidebar()" title="Menu" aria-label="Buka menu">
+          <span></span><span></span><span></span>
+        </div>
+        <div class="topbar-left" id="topbar-info">
+          <div class="topbar-title">Dashboard Monitoring</div>
+          <div class="topbar-sub">Overview status real-time seluruh bendungan</div>
+        </div>
       </div>
       <div class="topbar-right">
         <div class="live-badge">
@@ -1509,7 +1723,7 @@ textarea.form-control { resize: vertical; min-height: 80px; }
               <tbody>
                 <tr>
                   <td style="font-weight:500;color:var(--text)">Aris Nugroho</td>
-                  <td class="mono">aris.dev@smbn.go.id</td>
+                  <td class="mono">aris.dev@cip.co.id</td>
                   <td><span class="badge badge-blue">Super Admin</span></td>
                   <td>Semua Bendungan</td>
                   <td>27 Apr 2026, 11:05</td>
@@ -1518,7 +1732,7 @@ textarea.form-control { resize: vertical; min-height: 80px; }
                 </tr>
                 <tr>
                   <td style="font-weight:500;color:var(--text)">Budi Santoso</td>
-                  <td class="mono">op.bringinsila@smbn.go.id</td>
+                  <td class="mono">op.bringinsila@cip.co.id</td>
                   <td><span class="badge badge-teal">Admin Bendungan</span></td>
                   <td>Bringin Sila</td>
                   <td>27 Apr 2026, 10:32</td>
@@ -1527,7 +1741,7 @@ textarea.form-control { resize: vertical; min-height: 80px; }
                 </tr>
                 <tr>
                   <td style="font-weight:500;color:var(--text)">Herman Saputra</td>
-                  <td class="mono">herman@smbn.go.id</td>
+                  <td class="mono">herman@cip.co.id</td>
                   <td><span class="badge badge-gray">Operator Lapangan</span></td>
                   <td>Meninting</td>
                   <td>24 Apr 2026, 08:15</td>
@@ -1535,8 +1749,8 @@ textarea.form-control { resize: vertical; min-height: 80px; }
                   <td><button class="btn sm primary">Aktifkan</button></td>
                 </tr>
                 <tr>
-                  <td style="font-weight:500;color:var(--text)">Sri Wahyuni</td>
-                  <td class="mono">sri.op@smbn.go.id</td>
+                  <td style="font-weight:500;color:var(--text)">AHP</td>
+                  <td class="mono">ahp@cip.co.id</td>
                   <td><span class="badge badge-gray">Viewer</span></td>
                   <td>Semua (Read-Only)</td>
                   <td>26 Apr 2026, 14:20</td>
@@ -1552,6 +1766,63 @@ textarea.form-control { resize: vertical; min-height: 80px; }
     </div><!-- end content -->
   </div><!-- end main -->
 </div><!-- end app -->
+
+<!-- ════ SIDEBAR OVERLAY (mobile) ════ -->
+<div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
+
+<!-- ════ BOTTOM NAV (mobile) ════ -->
+<div class="bottom-nav" id="bottomNav">
+  <div class="bottom-nav-inner">
+    <div class="bottom-nav-item active" id="bnav-dashboard" onclick="showPage('dashboard');setBottomNav('dashboard')">
+      <svg viewBox="0 0 20 20" fill="currentColor"><rect x="1" y="1" width="7.5" height="7.5" rx="2"/><rect x="11.5" y="1" width="7.5" height="7.5" rx="2"/><rect x="1" y="11.5" width="7.5" height="7.5" rx="2"/><rect x="11.5" y="11.5" width="7.5" height="7.5" rx="2"/></svg>
+      Dashboard
+    </div>
+    <div class="bottom-nav-item" id="bnav-sensor" onclick="showPage('sensor');setBottomNav('sensor')">
+      <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="10" cy="10" r="3"/><path d="M10 2v2M10 16v2M2 10h2M16 10h2" stroke-linecap="round"/></svg>
+      Sensor
+    </div>
+    <div class="bottom-nav-item" id="bnav-alerts" onclick="showPage('alerts');setBottomNav('alerts')" style="position:relative">
+      <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M10 4v6M10 14v1.5" stroke-linecap="round"/><path d="M8.5 2L2 15.5h16L11.5 2a1.7 1.7 0 00-3 0z" stroke-linejoin="round"/></svg>
+      <span class="bnav-badge">34</span>
+      Alert
+    </div>
+    <div class="bottom-nav-item" id="bnav-trend" onclick="showPage('trend');setBottomNav('trend')">
+      <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 15L7 9l4 4 3-6 4 6H3z" stroke-linejoin="round"/></svg>
+      Tren
+    </div>
+    <div class="bottom-nav-item" id="bnav-more" onclick="toggleSidebar()">
+      <svg viewBox="0 0 20 20" fill="currentColor"><circle cx="4" cy="10" r="1.8"/><circle cx="10" cy="10" r="1.8"/><circle cx="16" cy="10" r="1.8"/></svg>
+      Lainnya
+    </div>
+  </div>
+</div>
+
+<!-- ════ STAT MINI BAR (mobile) ════ -->
+<template id="statMiniBarTpl">
+  <div class="stat-mini-bar" id="statMiniBar">
+    <div class="stat-mini-item">
+      <div class="smi-label">Total Bendungan</div>
+      <div class="smi-val" style="color:var(--accent)">5</div>
+      <div class="smi-footer"><span class="badge badge-green">5 Aktif</span></div>
+    </div>
+    <div class="stat-mini-item">
+      <div class="smi-label">Logger Online</div>
+      <div class="smi-val">9<span style="font-size:13px;color:var(--text2)">/13</span></div>
+      <div class="smi-footer"><span class="badge badge-amber">4 Offline</span></div>
+    </div>
+    <div class="stat-mini-item">
+      <div class="smi-label">Data Hari Ini</div>
+      <div class="smi-val" style="font-size:17px">81.239</div>
+      <div class="smi-footer" style="color:var(--red);font-size:11px">↓ 38%</div>
+    </div>
+    <div class="stat-mini-item">
+      <div class="smi-label">Alert Aktif</div>
+      <div class="smi-val" style="color:var(--red)">34</div>
+      <div class="smi-footer"><span class="badge badge-amber">Warning</span></div>
+    </div>
+  </div>
+  <div class="scroll-hint">← geser untuk lihat semua →</div>
+</template>
 
 <!-- ════ NOTIFICATION PANEL ════ -->
 <div class="notif-overlay" id="notifOverlay" onclick="closeNotif(event)">
@@ -1595,6 +1866,47 @@ textarea.form-control { resize: vertical; min-height: 80px; }
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 <script>
 /* ════════════════════════════════
+   SIDEBAR TOGGLE (mobile)
+════════════════════════════════ */
+function toggleSidebar() {
+  const sidebar = document.querySelector('.sidebar');
+  const overlay = document.getElementById('sidebarOverlay');
+  if (!sidebar || !overlay) return;
+  const isOpen = sidebar.classList.toggle('open');
+  overlay.classList.toggle('open', isOpen);
+  document.body.style.overflow = isOpen ? 'hidden' : '';
+}
+
+/* ════════════════════════════════
+   BOTTOM NAV SYNC
+════════════════════════════════ */
+function setBottomNav(name) {
+  document.querySelectorAll('.bottom-nav-item').forEach(el => el.classList.remove('active'));
+  const el = document.getElementById('bnav-' + name);
+  if (el) el.classList.add('active');
+  // Close sidebar on mobile when nav item clicked
+  const sidebar = document.querySelector('.sidebar');
+  const overlay = document.getElementById('sidebarOverlay');
+  if (sidebar && sidebar.classList.contains('open')) {
+    sidebar.classList.remove('open');
+    overlay && overlay.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+}
+
+/* ════════════════════════════════
+   INJECT STAT MINI BAR into dashboard page
+════════════════════════════════ */
+document.addEventListener('DOMContentLoaded', function() {
+  const tpl = document.getElementById('statMiniBarTpl');
+  const dashPage = document.getElementById('page-dashboard');
+  if (tpl && dashPage) {
+    const clone = tpl.content.cloneNode(true);
+    dashPage.insertBefore(clone, dashPage.firstChild);
+  }
+});
+
+/* ════════════════════════════════
    PAGE NAVIGATION
 ════════════════════════════════ */
 const PAGE_TITLES = {
@@ -1624,6 +1936,16 @@ function showPage(name) {
     if (PAGE_TITLES[name]) {
       document.querySelector('.topbar-title').textContent = PAGE_TITLES[name][0];
       document.querySelector('.topbar-sub').textContent   = PAGE_TITLES[name][1];
+    }
+    // Sync bottom nav
+    setBottomNav(name);
+    // Close sidebar on mobile
+    const sidebar = document.querySelector('.sidebar');
+    const overlay = document.getElementById('sidebarOverlay');
+    if (sidebar && sidebar.classList.contains('open')) {
+      sidebar.classList.remove('open');
+      overlay && overlay.classList.remove('open');
+      document.body.style.overflow = '';
     }
     // Scroll content back to top
     document.querySelector('.content').scrollTop = 0;
